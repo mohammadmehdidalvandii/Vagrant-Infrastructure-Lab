@@ -1,0 +1,9 @@
+---
+- name: Update all infrastructure nodes
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update package cache
+      ansible.builtin.apt:
+        update_cache: true
