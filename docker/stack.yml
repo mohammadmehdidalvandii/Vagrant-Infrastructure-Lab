@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx:alpine
+
+    ports:
+      - "8080:80"
+
+    configs:
+      - source: web-content
+        target: /usr/share/nginx/html/index.html
+
+    deploy:
+      replicas: 3
+
+      restart_policy:
+        condition: on-failure
+
+configs:
+  web-content:
+    file: ../app/index.html
